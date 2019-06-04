@@ -1,4 +1,6 @@
 class ResearchAndStatisticsFacet < FilterableFacet
+  attr_reader :value
+
   def initialize(facet, value)
     @filter_hashes = ::Filters.research_and_statistics_filters
     @value = validated_value(value, @filter_hashes)
@@ -29,6 +31,10 @@ class ResearchAndStatisticsFacet < FilterableFacet
 
   def to_partial_path
     "radio_facet"
+  end
+
+  def allowed_values
+    @filter_hashes
   end
 
 private

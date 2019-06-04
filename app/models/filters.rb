@@ -3,6 +3,7 @@ module Filters
     [
       {
         'key' => 'upcoming_statistics',
+        'value' => 'upcoming_statistics',
         'label' => 'Statistics (upcoming)',
         'filter' => {
           'release_timestamp' => "from:#{Date.today.iso8601}",
@@ -11,6 +12,7 @@ module Filters
       },
       {
         'key' => 'published_statistics',
+        'value' => 'published_statistics',
         'label' => 'Statistics (published)',
         'filter' => {
           'content_store_document_type' => %w(statistics national_statistics statistical_data_set official_statistics)
@@ -19,6 +21,7 @@ module Filters
       },
       {
         'key' => 'research',
+        'value' => 'research',
         'label' => 'Research',
         'filter' => {
           'content_store_document_type' => %w(dfid_research_output independent_report research)
