@@ -132,18 +132,21 @@
 .finder-results {
   list-style-type: none;
   padding-left: 0;
+}
 
-  .debug-link {
-    color: green;
-    word-wrap: break-word;
-  }
-  .debug-info {
-    color: red;
-    span {
-      display: block;
-      min-width: 150px;
-    }
-  }
+.debug-results {
+  @include govuk-font(16);
+  display: block;
+  margin: govuk-spacing(1) 0 0 0;
+  word-wrap: break-word;
+}
+
+.debug-results--link {
+  color: govuk-colour("green");
+}
+
+.debug-results--meta {
+  color: govuk-colour("bright-red");
 }
 
 .filtered-results__group {
