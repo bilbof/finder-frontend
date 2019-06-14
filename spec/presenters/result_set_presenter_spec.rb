@@ -85,6 +85,29 @@ RSpec.describe ResultSetPresenter do
     )
   end
 
+  let(:document_list_documents) do
+    {
+      link: {
+        text: 'Investigation into the distribution of road fuels in parts of Scotland',
+        path: 'slug-1',
+        description: 'I am a document',
+        data_attributes: {
+          track_category: 'navFinderLinkClicked',
+          track_action: 'A finder.1',
+          track_label: 'slug-1',
+          track_options: {
+            dimension28: 1,
+            dimension29: 'Investigation into the distribution of road fuels in parts of Scotland'
+          }
+        }
+      },
+      metadata: {},
+      subtext: nil,
+      highlight: nil,
+      highlight_text: nil
+    }
+  end
+
   let(:sort_presenter) do
     double(
       SortPresenter,
@@ -145,6 +168,21 @@ RSpec.describe ResultSetPresenter do
       it 'creates a new document for each result' do
         search_result_objects = presenter.documents
         expect(search_result_objects.count).to eql(3)
+      end
+    end
+
+    context "documents for component" do
+      let(:results) do
+        ResultSet.new(
+          [document],
+          total
+        )
+      end
+
+      it 'returns document_list_documents data for each result' do
+        search_result_objects = presenter.document_list_documents
+        expect(search_result_objects.count).to eql(1)
+        expect(search_result_objects.first).to eql(document_list_documents)
       end
     end
 
