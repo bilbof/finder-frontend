@@ -134,6 +134,12 @@
   padding-left: 0;
 }
 
+.published-by {
+  @include govuk-font(14);
+  display: block;
+  color: govuk-colour("grey-1");
+}
+
 .debug-results {
   @include govuk-font(16);
   display: block;

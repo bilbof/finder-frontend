@@ -83,7 +83,7 @@ class ResultSetPresenter
       end
     end
 
-    published_text = "First published during the #{doc[:government_name]}" if doc[:is_historic]
+    published_text = "<span class='published-by'>First published during the #{doc[:government_name]}</span>" if doc[:is_historic]
     debug_text = "<span class='debug-results debug-results--link'>#{doc[:link]}</span>"\
                  "<span class='debug-results debug-results--meta'>Score: #{doc[:es_score] || "no score (sort by relevance)"}</span>"\
                  "<span class='debug-results debug-results--meta'>Format: #{doc[:format]}</span>" if debug_score
