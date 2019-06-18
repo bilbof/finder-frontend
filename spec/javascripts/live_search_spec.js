@@ -398,7 +398,7 @@ describe('liveSearch', function () {
             '<h2 class="filtered-results__facet-heading">Primary group</h2>' +
             '<ul class="finder-results js-finder-results">' +
               '<li class="document">' +
-                '<a href="/reports/test-report-1" class="document-heading--pinned document__link" data-track-category="navFinderLinkClicked" data-track-action="foo" data-track-label="">Test report 1</a>' +
+                '<a href="/reports/test-report-1" class="document__link" data-track-category="navFinderLinkClicked" data-track-action="foo" data-track-label="">Test report 1</a>' +
                 '<p>This is important</p>' +
               '</li>' +
               '<li class="document">' +
