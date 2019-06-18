@@ -28,8 +28,7 @@ class ResultSetPresenter
       zero_results: total.zero?,
       page_count: documents.count,
       finder_name: finder.name,
-      debug_score: debug_score,
-      document_list_documents: document_list_documents
+      debug_score: debug_score
     }
   end
 
@@ -38,29 +37,12 @@ class ResultSetPresenter
       results.each_with_index.map do |result, index|
         metadata = metadata_presenter_class.new(result.metadata).present
         doc = SearchResultPresenter.new(result, metadata).to_hash
-        if  index === 0 && highlight_top_result?
-          doc[:top_result] = true
-          doc[:summary] = result.truncated_description
-        end
-        {
-          document: doc,
-          document_index: index + 1
-        }
+        structure_document_content(doc, result, index, results.count)
       end
     end
   end
 
-  def document_list_documents
-    @document_list_documents ||= begin
-      results.each_with_index.map do |result, index|
-        metadata = metadata_presenter_class.new(result.metadata).present
-        doc = SearchResultPresenter.new(result, metadata).to_hash
-        structure_document_content(doc, result, index)
-      end
-    end
-  end
-
-  def structure_document_content(doc, result, index)
+  def structure_document_content(doc, result, index, count)
     component_metadata = {}
 
     if index === 0 && highlight_top_result?
@@ -99,7 +81,7 @@ class ResultSetPresenter
           track_action: "#{finder.name}.#{index + 1}",
           track_label: doc[:link],
           track_options: {
-            dimension28: documents.count,
+            dimension28: count,
             dimension29: doc[:title]
           }
         }

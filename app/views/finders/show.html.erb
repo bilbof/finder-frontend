@@ -7,7 +7,7 @@
   <%= auto_discovery_link_tag(:atom, @results.signup_links[:feed_link]) %>
   <%= render 'finder_meta', finder: finder %>
 
-  <% if @results.documents.present? && @results.documents.first[:document][:top_result] %>
+  <% if @results.documents.present? && @results.documents.first[:highlight] %>
     <meta name="govuk:relevant-result-shown" content="yes">
   <% end %>
 
