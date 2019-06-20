@@ -327,16 +327,3 @@
 .app-patch--search-input-override input[type="search"] {
   box-sizing: border-box;
 }
-
-.gem-c-inverse-header {
-  margin-top: -10px;
-}
-
-.gem-c-breadcrumbs.govuk-breadcrumbs {
-  margin-top: 0;
-  @include govuk-responsive-padding(6, "top")
-}
-
-.gem-c-inverse-header .govuk-breadcrumbs__link {
-  color: govuk-colour("white");
-}
