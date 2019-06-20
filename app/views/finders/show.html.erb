@@ -24,9 +24,15 @@
 <form method="get" action="<%= finder.slug %>" class="js-live-search-form">
   <input type="hidden" name="parent" value="<%= @parent %>">
 
-  <div class="<%= "gem-c-inverse-header gem-c-inverse-header--full-width gem-c-inverse-header--padding-top" if finder.topic_finder? %>">
+  <% if finder.topic_finder? %>
+    <%= render "govuk_publishing_components/components/inverse_header", {
+      full_width: true
+    } do %>
+      <%= render partial: 'show_header', locals: { inverse: inverse } %>
+    <% end %>
+  <% else %>
     <%= render partial: 'show_header', locals: { inverse: inverse } %>
-  </div>
+  <% end %>
 
   <div class="govuk-width-container">
     <div class="govuk-grid-row">
