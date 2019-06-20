@@ -21,7 +21,7 @@ class GroupedResultSetPresenter < ResultSetPresenter
     primary_group = {}
     secondary_group = {}
 
-    documents.select! { |d| d[:document][:metadata].present? }
+    documents.select! { |d| d[:metadata].present? }
     sorted_documents = sort_by_promoted_alphabetical(documents)
 
     # With no facet filtering add all documents to default group
@@ -30,7 +30,7 @@ class GroupedResultSetPresenter < ResultSetPresenter
       default_group[:documents] = sorted_documents
     else
       sorted_documents.each do |item|
-        document_metadata = item[:document][:metadata]
+        document_metadata = item[:metadata]
         # If the document is tagged to all primary facet values, and we are filtering
         # by the primary facet, then add the document to default group to prevent
         # duplication in every primary facet value grouping.
@@ -97,11 +97,11 @@ private
   end
 
   def sort_by_promoted(results)
-    results.sort_by { |r| r[:document][:promoted] ? 0 : 1 }
+    results.sort_by { |r| r[:highlight] ? 0 : 1 }
   end
 
   def sort_by_promoted_alphabetical(search_results)
-    sorted_results = search_results.sort_by { |r| r[:document][:title] }
+    sorted_results = search_results.sort_by { |r| r[:link][:text] }
     sort_by_promoted(sorted_results)
   end
 

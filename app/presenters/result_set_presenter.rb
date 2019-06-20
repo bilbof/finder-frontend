@@ -51,18 +51,16 @@ class ResultSetPresenter
       highlight_text = "Most relevant result"
     end
 
-    if doc[:show_metadata]
-      doc[:metadata].each do |meta|
-        label = meta[:hide_label] ? "<span class='govuk-visually-hidden'>#{meta[:label]}:</span>" : "#{meta[:label]}:"
+    doc[:metadata].each do |meta|
+      label = meta[:hide_label] ? "<span class='govuk-visually-hidden'>#{meta[:label]}:</span>" : "#{meta[:label]}:"
 
-        if meta[:is_date]
-          value = "<time datetime='#{meta[:machine_date]}'>#{meta[:human_date]}</time>"
-        else
-          value = meta[:value]
-        end
-
-        component_metadata[meta[:label]] = "#{label} #{value}".html_safe
+      if meta[:is_date]
+        value = "<time datetime='#{meta[:machine_date]}'>#{meta[:human_date]}</time>"
+      else
+        value = meta[:value]
       end
+
+      component_metadata[meta[:label]] = "#{label} #{value}".html_safe
     end
 
     published_text = "<span class='published-by'>First published during the #{doc[:government_name]}</span>" if doc[:is_historic]
